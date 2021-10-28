@@ -7,18 +7,18 @@ export const AddPrayerRequest = () => {
 
     const [text, setText] = useState({});
 
-    fetch('https://bbcconway.com/wp-json/jwt-auth/v1/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    // fetch('https://bbcconway.com/wp-json/jwt-auth/v1/token', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
 
-        body: JSON.stringify({
-            username: 'timjossund',
-            password: '@TiMj54874'
-        })
-    }).then(response => response.json())
-    .then(user => console.log(user.token));
+    //     body: JSON.stringify({
+    //         username: 'timjossund',
+    //         password: '@TiMj54874'
+    //     })
+    // }).then(response => response.json())
+    // .then(user => console.log(user.token));
 
     const resetForm = () => {
         setText({...text, title: '', content: ''})
