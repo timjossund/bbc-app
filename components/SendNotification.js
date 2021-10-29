@@ -2,35 +2,23 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Input } from 'react-native-elements'
 import { Button } from 'react-native-elements/dist/buttons/Button'
+import {API_URL, API_TOKEN} from "@env"
 
 export const SendNotification = () => {
 
     const [text, setText] = useState({});
-
-    fetch('https://bbcconway.com/wp-json/jwt-auth/v1/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-
-        body: JSON.stringify({
-            username: 'timjossund',
-            password: '@TiMj54874'
-        })
-    }).then(response => response.json())
-    .then(user => console.log(user.token));
 
     const resetForm = () => {
         setText({...text, title: '', content: ''})
     }
 
     const handlePost = () => {
-        fetch('https://bbcconway.com/wp-json/wp/v2/posts', {
+        fetch(`${API_URL}/posts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmJjY29ud2F5LmNvbSIsImlhdCI6MTYzNTM2NzI2NywibmJmIjoxNjM1MzY3MjY3LCJleHAiOjE2MzU5NzIwNjcsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.jcxGjU3HTG2hAgui4qAcfpaMTtA5nsKH09tG4SZQiDY"
+                Authorization: `Bearer ${API_TOKEN}`
             },
             body: JSON.stringify({
                 "title": `${text.title}`,
